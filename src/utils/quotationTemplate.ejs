@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Quotation Details</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <div>
+        <div
+          style="display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center">
+          <h3 style="color: red">TRIO ENGINEERS</h3>
+          <p>
+            CONSTRUCTION AND INTERIOR SOLUTIONS<br></br>DEALERS :- &nbsp;
+            GRANITE, MARBLE AND EPOXY FLOORING, KAG VITRIFIED TILES, WATER
+            PROOFING AND LEAKAGE.
+          </p>
+          <p>Contact: 9789097404, 9790868697, 9087139987</p>
+          <p>
+            Email:
+            <b style="text-decoration: underline; color: blue">
+              trioengineers2018@gmail.com
+            </b>
+          </p>
+        </div>
+        <hr></hr>
+        <p style="text-align: end">Date: <%= new Date().toLocaleDateString() %></p>
+        <h4 style="text-align: center">Quotation Details</h4>
+        <!-- <p style="text-align: center">Total Land Area: <%= data.landArea %> sq.ft</p> -->
+        <table
+          cellPadding="15px"
+          style="margin: auto;
+            border: 1px solid black;
+            width: 60%; border-collapse: collapse;"
+      
+        >
+          <thead style="border: 1px solid black">
+            <tr style="border: 1px solid black">
+              <th style="border: 1px solid black; width: 2">SL.NO</th>
+              <th style="border: 1px solid black; width: 40%">Description</th>
+              <th style="border: 1px solid black; width: 15%">Area</th>
+              <th style="border: 1px solid black; width: 15%">Rate</th>
+              <th style="border: 1px solid black; width: 30%">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="detailsTableBody" style="border:1px solid black">
+            <% Object.keys(data).forEach((key, i) => { %>
+              <tr>
+                <td style="border: 1px solid black"><%= i+1 %></td>
+                <td style="border: 1px solid black" ><%= key.split(/(?=[A-Z])/).map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ') %></td>
+                <td style="border: 1px solid black"><%= data[key] %></td>
+                <td style="border: 1px solid black"><%= key.includes('builtUpArea') ? 2200  : key == 'compoundWall' ? 1600 : key == 'septicTank' ? 18  : key == 'sump' ? 20  : '-'  %></td>
+                <td style="border: 1px solid black"><%= key.includes('builtUpArea') ? 2200 * data[key] : key == 'compoundWall' ? 1600 * data[key] : key == 'septicTank' ? 18 * data[key] : key == 'sump' ? 20 * data[key] : '-'  %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        <br></br>
+        <p style="color: red; text-align: center">
+          NOTE :- EB, Borewell & Motor, Plan Approval, Extra Elevation works
+          are not included, those are separate charges.
+        </p>
+        <div style="text-align: center">
+          <span>Regards,</span>
+          <h5>Trio Engineers</h5>
+        </div>
+      </div>
+</body>
+</html>
